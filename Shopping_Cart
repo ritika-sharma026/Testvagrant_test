@@ -1,0 +1,48 @@
+// First defining the basket with product details
+let product_detail_basket = [
+    { product: "Leather wallet", unit_price: 1100, gst_percentage: 18, quantity: 1 },
+    { product: "Umbrella", unit_price: 900, gst_percentage: 12, quantity: 4 },
+    { product: "Cigarette", unit_price: 200, gst_percentage: 28, quantity: 3 },
+    { product: "Honey", unit_price: 100, gst_percentage: 0, quantity: 2 }
+];
+
+// Function to calculate total amount to be paid
+function calculateTotalAmount(product_detail_basket) {
+    let overAllAmount = 0;
+
+    for (let item of product_detail_basket) {
+        let unitPrice = item.unit_price * item.quantity;
+        let gstAmount = (unitPrice * item.gst_percentage) / 100;
+        overAllAmount = overAllAmount + unitPrice + gstAmount;
+    }
+
+    // Now applying 5% of discount for products with unit price Rs. 500 or more than that amount
+    overAllAmount = overAllAmount * 0.95;
+
+    return (Math.floor)(overAllAmount);
+}
+
+// Now writing the function to identify the product for which maximum GST amount is paid
+function find_MaxGST_Product(product_detail_basket) {
+    let maximumGSTAmount = 0;
+    let maximumGSTProduct = null;
+
+    for (let item of product_detail_basket) {
+        let unitPrice = item.unit_price * item.quantity;
+        let gstAmount = (unitPrice * item.gst_percentage) / 100;
+
+        if (gstAmount > maximumGSTAmount) {
+            maximumGSTAmount = gstAmount;
+            maximumGSTProduct = item.product;
+        }
+    }
+//now returing the maximum gst product as per the question
+    return maximumGSTProduct;
+}
+
+// Calculate and display results
+let totalAmountToPay = calculateTotalAmount(product_detail_basket);
+let maximumGSTProduct = find_MaxGST_Product(product_detail_basket);
+
+console.log("Total amount to be paid:", totalAmountToPay);
+console.log("Product with maximum GST amount:", maximumGSTProduct);
