@@ -1,3 +1,5 @@
+//shopping cart question solution
+
 // First defining the basket with product details
 let product_detail_basket = [
     { product: "Leather wallet", unit_price: 1100, gst_percentage: 18, quantity: 1 },
